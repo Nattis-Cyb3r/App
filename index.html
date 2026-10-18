@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101114">
+  <meta name="description" content="Universal Play — a simple browser-based retro gaming launcher.">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icons/icon.svg" type="image/svg+xml">
+  <title>Universal Play</title>
+  <style>
+    :root { color-scheme: dark; --bg:#101114; --panel:#191b21; --panel2:#22252d; --text:#f5f6fa; --muted:#a8adbb; --accent:#a4f06b; --line:#30333d; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:radial-gradient(ellipse at 80% -10%, #293b25 0, transparent 35%),var(--bg); color:var(--text); font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif; min-height:100vh; }
+    .wrap { max-width:1080px; margin:auto; padding:22px 16px 40px; }
+    header { display:flex; align-items:center; justify-content:space-between; gap:14px; margin-bottom:28px; }
+    .brand { display:flex; align-items:center; gap:11px; font-size:1.25rem; font-weight:800; letter-spacing:-.04em; }
+    .logo { width:42px; height:42px; display:grid; place-items:center; border-radius:14px; background:var(--accent); color:#17200f; font-size:23px; }
+    .tag { border:1px solid var(--line); color:var(--muted); border-radius:99px; padding:5px 10px; font-size:.78rem; }
+    .hero { padding:26px 0 24px; max-width:700px; }
+    .eyebrow { color:var(--accent); font-size:.78rem; text-transform:uppercase; letter-spacing:.16em; font-weight:800; }
+    h1 { font-size:clamp(2.4rem,8vw,4.8rem); line-height:.99; letter-spacing:-.065em; margin:12px 0 16px; }
+    .hero p { color:var(--muted); font-size:1.05rem; max-width:590px; }
+    .grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:13px; margin:22px 0 28px; }
+    .tile { border:1px solid var(--line); background:linear-gradient(145deg,var(--panel),#15161b); border-radius:19px; padding:18px; min-height:150px; }
+    .tile .emoji { font-size:1.8rem; }
+    .tile h3 { margin:10px 0 4px; font-size:1rem; }
+    .tile p { margin:0; color:var(--muted); font-size:.87rem; }
+    .section-head { display:flex; align-items:end; justify-content:space-between; gap:12px; margin:28px 0 12px; }
+    h2 { margin:0; font-size:1.35rem; letter-spacing:-.035em; }
+    .muted { color:var(--muted); font-size:.88rem; }
+    .player { border:1px solid var(--line); background:var(--panel); border-radius:22px; overflow:hidden; }
+    .player-top { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:15px 17px; border-bottom:1px solid var(--line); }
+    .dots { display:flex; gap:5px; }
+    .dots span { width:8px;height:8px;border-radius:50%;background:#525764; }
+    .player-actions { display:flex; gap:8px; flex-wrap:wrap; }
+    button,.btn { appearance:none; border:0; cursor:pointer; font:inherit; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; gap:8px; border-radius:12px; padding:11px 15px; font-weight:750; }
+    .primary { background:var(--accent); color:#17200f; }
+    .secondary { background:var(--panel2); color:var(--text); border:1px solid var(--line); }
+    .frame-wrap { position:relative; min-height:460px; background:#0b0c0f; }
+    iframe { display:block; width:100%; height:min(78vh,800px); min-height:460px; border:0; background:#0b0c0f; }
+    .fallback { position:absolute; inset:auto 14px 14px; background:#191b21f2; border:1px solid var(--line); border-radius:13px; padding:12px 14px; display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+    .fallback p { margin:0; color:var(--muted); font-size:.86rem; flex:1; min-width:180px; }
+    .note { margin-top:15px; border:1px solid #4b513d; background:#1b2117; padding:14px 16px; border-radius:14px; color:#dce8d2; font-size:.9rem; }
+    footer { border-top:1px solid var(--line); margin-top:30px; padding-top:18px; color:var(--muted); font-size:.82rem; display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; }
+    a { color:var(--accent); }
+    @media(max-width:700px) { .grid{grid-template-columns:1fr;} .tile{min-height:0;display:grid;grid-template-columns:44px 1fr;column-gap:12px;align-items:center;} .tile .emoji{grid-row:span 2;} .tile h3{margin:0;} .tile p{grid-column:2;} .tag{display:none;} .player-top{align-items:flex-start;flex-direction:column;} .frame-wrap,iframe{min-height:520px;} }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand"><div class="logo">▶</div><span>Universal Play</span></div>
+      <div class="tag">BROWSER GAMING HUB</div>
+    </header>
+
+    <section class="hero">
+      <div class="eyebrow">Your games. One place.</div>
+      <h1>Play more.<br>Install less.</h1>
+      <p>A clean, phone-friendly launcher for browser-based retro gaming. Open the player below and load a compatible game file from your device.</p>
+    </section>
+
+    <section class="grid" aria-label="Features">
+      <article class="tile"><div class="emoji">🎮</div><h3>Retro consoles</h3><p>DS, GBA, N64, SNES, Game Boy and more.</p></article>
+      <article class="tile"><div class="emoji">📂</div><h3>Your own files</h3><p>Select compatible game files from your device in the emulator.</p></article>
+      <article class="tile"><div class="emoji">📱</div><h3>Made for mobile</h3><p>Responsive layout for Android phones and desktop browsers.</p></article>
+    </section>
+
+    <div class="section-head">
+      <div><h2>Online emulator</h2><div class="muted">Powered by EmulatorBIOS</div></div>
+      <span class="muted">Internet required</span>
+    </div>
+
+    <section class="player" aria-label="Online emulator player">
+      <div class="player-top">
+        <div style="display:flex;align-items:center;gap:10px"><div class="dots"><span></span><span></span><span></span></div><strong>Universal Play Player</strong></div>
+        <div class="player-actions">
+          <button class="secondary" id="reload">Reload player</button>
+          <a class="btn primary" href="https://emulatorbios.com/online-emulator/" target="_blank" rel="noopener noreferrer">Open full player ↗</a>
+        </div>
+      </div>
+      <div class="frame-wrap">
+        <iframe id="emulator" title="EmulatorBIOS online emulator" src="https://emulatorbios.com/online-emulator/" loading="lazy" allow="fullscreen; gamepad" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        <div class="fallback">
+          <p>If the player area stays blank, the website may block embedding. Use “Open full player” to play on its official page.</p>
+          <a class="btn secondary" href="https://emulatorbios.com/online-emulator/" target="_blank" rel="noopener noreferrer">Launch emulator ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="note"><strong>Compatibility note:</strong> this web app is a launcher, not a new emulator engine. The online player lists retro systems such as Nintendo DS, GBA, N64, SNES and PS1. It does not provide Xbox or modern Windows PC emulation. Use game files and BIOS files you have the legal right to use.</div>
+
+    <footer><span>Universal Play · Free web app</span><span>Emulator service by <a href="https://emulatorbios.com/about/" target="_blank" rel="noopener noreferrer">EmulatorBIOS</a></span></footer>
+  </div>
+  <script>
+    document.getElementById('reload').addEventListener('click', () => {
+      const frame = document.getElementById('emulator');
+      frame.src = 'about:blank';
+      setTimeout(() => frame.src = 'https://emulatorbios.com/online-emulator/', 80);
+    });
+    if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+      window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {}));
+    }
+  </script>
+</body>
+</html>
